@@ -1,11 +1,11 @@
 [{
-  "packagePath": "./server",
+  "packagePath": "./idm-server",
   "port": 3000
 }, {
-  "packagePath": "./database",
+  "packagePath": "./idm-database",
   "host": "localhost",
   "port": 27017,
   "databaseName": "node-idm"
 }, {
-  "packagePath": "./routes"
+  "packagePath": "./idm-routes"
 }]

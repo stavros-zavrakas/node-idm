@@ -4,6 +4,7 @@
   "description": "IDM server implemented in node",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "npm test"
   },
   "keywords": [

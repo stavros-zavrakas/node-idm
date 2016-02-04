@@ -3,9 +3,7 @@
   "main": "index.js",
   "version": "0.0.1",
   "private": true,
-  "dependencies": {
-    "mongoose": "^4.4.1"
-  },
+  "dependencies": {},
   "plugin": {
     "consumes": [],
     "provides": ["mongoose"]
