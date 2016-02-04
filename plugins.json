@@ -1,0 +1,6 @@
+[{
+  "packagePath": "./server",
+  "port": 3000
+}, {
+  "packagePath": "./routes"
+}]

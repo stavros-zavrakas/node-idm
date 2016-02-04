@@ -1,0 +1,20 @@
+{
+  "name": "node-idm",
+  "version": "1.0.0",
+  "description": "IDM server implemented in node",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "idm",
+    "server",
+    "node.js"
+  ],
+  "author": "Stavros Zavrakas",
+  "license": "ISC",
+  "dependencies": {
+    "architect": "^0.1.11",
+    "express": "^4.13.4"
+  }
+}
