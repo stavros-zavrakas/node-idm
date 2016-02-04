@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "lint": "gulp lint",
     "test": "npm test"
   },
   "keywords": [
@@ -18,5 +19,11 @@
     "architect": "^0.1.11",
     "express": "^4.13.4",
     "mongoose": "^4.4.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^2.0.0",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0"
   }
 }
