@@ -2,5 +2,10 @@
   "packagePath": "./server",
   "port": 3000
 }, {
+  "packagePath": "./database",
+  "host": "localhost",
+  "port": 27017,
+  "databaseName": "node-idm"
+}, {
   "packagePath": "./routes"
 }]
