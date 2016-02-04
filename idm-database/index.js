@@ -4,6 +4,8 @@ var assert = require('assert');
 
 var mongoose = require('mongoose');
 
+var clients = require('./models/clients');
+
 module.exports = function setup(options, imports, register) {
   assert(options.host, 'Option "host" is required');
   assert(options.databaseName, 'Option "databaseName" is required');
@@ -20,7 +22,8 @@ module.exports = function setup(options, imports, register) {
     console.log('Successfully connected to MongoDB');
 
     register(null, {
-      mongoose: mongoose
+      mongoose: mongoose,
+      clientsModel: clients.model
     });
   });
 

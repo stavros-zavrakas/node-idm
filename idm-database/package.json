@@ -6,6 +6,6 @@
   "dependencies": {},
   "plugin": {
     "consumes": [],
-    "provides": ["mongoose"]
+    "provides": ["mongoose", "clientsModel"]
   }
 }

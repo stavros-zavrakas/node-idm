@@ -7,7 +7,7 @@ module.exports = function setup(options, imports, register) {
 
   var app = imports.express;
 
-  app.get('/', routes.index);
+  app.get('/users', routes.get);
 
   register();
 };

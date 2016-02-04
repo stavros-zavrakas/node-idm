@@ -1,7 +1,7 @@
 'use strict';
 
-exports.index = function (req, res) {
+exports.get = function (req, res) {
   res.json({
-    title: 'Express + Architect Application'
+    title: 'Users get'
   });
 };
