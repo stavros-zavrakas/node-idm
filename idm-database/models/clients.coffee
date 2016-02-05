@@ -1,13 +1,12 @@
 mongoose = require "mongoose"
 
-schema = new mongoose.Schema {
+schema = new mongoose.Schema
   clientId: "string",
   clientSecret: "string",
   createdFromUser: "string",
   secretAppToken: "string",
   permissions: Array,
   isDeleted: Boolean
-}
 
 clients = mongoose.model "clients", schema
 

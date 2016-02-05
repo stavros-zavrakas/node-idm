@@ -1,6 +1,6 @@
 path = require "path"
 architect = require "architect"
-architect_config = architect.loadConfig path.join(__dirname, "plugins.json")
+architect_config = architect.loadConfig path.join __dirname, "plugins.json"
 
 arch = architect.createApp architect_config, () ->
   console.log "application started"

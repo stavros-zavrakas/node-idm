@@ -15,7 +15,6 @@ module.exports = (options, imports, register) ->
   http.createServer(expr).listen expr.get('port'), () ->
     console.log "Express server listening on port #{expr.get('port')}"
 
-  register null, {
+  register null,
     express: expr
-  }
 
