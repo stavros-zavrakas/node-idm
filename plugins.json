@@ -9,5 +9,5 @@
 }, {
   "packagePath": "./idm-routes"
 }, {
-  "packagePath": "./idm-routes-users"
+  "packagePath": "./idm-controllers-users"
 }]

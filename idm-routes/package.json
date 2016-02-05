@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {},
   "plugin": {
-    "consumes": ["express", "getUsersRoute"],
+    "consumes": ["express", "getUsersController"],
     "provides": []
   }
 }

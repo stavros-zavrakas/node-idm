@@ -6,6 +6,6 @@
   "dependencies": {},
   "plugin": {
     "consumes": ["usersModel"],
-    "provides": ["getUsersRoute"]
+    "provides": ["getUsersController"]
   }
 }

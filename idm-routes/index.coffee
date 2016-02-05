@@ -2,8 +2,8 @@ module.exports = (options, imports, register) ->
   console.log "routes initialized"
 
   app = imports.express
-  getUsersRoute = imports.getUsersRoute
+  getUsersController = imports.getUsersController
 
-  app.get "/users", getUsersRoute
+  app.get "/users", getUsersController
 
   register()
