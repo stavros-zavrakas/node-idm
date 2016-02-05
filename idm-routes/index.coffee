@@ -1,11 +1,9 @@
-routes = require "./users"
-
 module.exports = (options, imports, register) ->
   console.log "routes initialized"
 
   app = imports.express
-  users = imports.usersModel
+  getUsersRoute = imports.getUsersRoute
 
-  app.get "/users", routes.get
+  app.get "/users", getUsersRoute
 
   register()

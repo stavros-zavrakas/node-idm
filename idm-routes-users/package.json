@@ -1,11 +1,11 @@
 {
-  "name": "IdmNodeUserRoutes",
+  "name": "IdmNodeUsersRoutes",
   "main": "index.js",
   "version": "0.0.1",
   "private": true,
   "dependencies": {},
   "plugin": {
-    "consumes": ["express", "getUsersRoute"],
-    "provides": []
+    "consumes": ["usersModel"],
+    "provides": ["getUsersRoute"]
   }
 }

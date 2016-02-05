@@ -8,4 +8,6 @@
   "databaseName": "node-idm"
 }, {
   "packagePath": "./idm-routes"
+}, {
+  "packagePath": "./idm-routes-users"
 }]

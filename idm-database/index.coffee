@@ -3,7 +3,7 @@ assert = require "assert"
 mongoose = require "mongoose"
 
 clients = require "./models/clients"
-users = require "./models/clients"
+users = require "./models/users"
 
 module.exports = (options, imports, register) ->
   assert options.host, "Option 'host' is required"
