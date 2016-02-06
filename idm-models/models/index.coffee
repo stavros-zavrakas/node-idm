@@ -1,6 +1,9 @@
 users = require "./users"
 clients = require "./clients"
 
+init = (mongoose) ->
+  users: users.init(mongoose),
+  clients: clients.init(mongoose)
+
 module.exports =
-  users: users,
-  clients: clients
+  init: init
