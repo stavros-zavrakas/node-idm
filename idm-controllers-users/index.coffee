@@ -1,18 +1,17 @@
-get = require "./controllers/get"
-getSingle = require "./controllers/getSingle"
-post = require "./controllers/post"
+controllers = require "./controllers"
 
 module.exports = (options, imports, register) ->
   console.log "users controllers initialized"
 
   usersModel = imports.models.users
 
-  get = get.get usersModel
-  getSingle = getSingle.getSingle usersModel
-  post = post.post usersModel
+  getUsers = controllers.users.get usersModel
+  getUsersSingle = controllers.users.getSingle usersModel
+  postUsers = controllers.users.post usersModel
 
   register null,
-    usersControllers:
-      get: get
-      getSingle: getSingle
-      post: post
+    controllers:
+      users:
+        get: getUsers
+        getSingle: getUsersSingle
+        post: postUsers

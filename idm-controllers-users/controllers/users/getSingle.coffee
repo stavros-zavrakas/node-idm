@@ -1,4 +1,4 @@
-exports.getSingle = 
+module.exports = 
   (usersModel) ->
     return (req, res) ->
       console.log "get /users/:uid controller"

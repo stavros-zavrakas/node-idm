@@ -7,7 +7,7 @@ bodyParser = require 'body-parser'
 module.exports = (options, imports, register) ->
   assert options.port, "Option 'port' is required"
 
-  userControllers = imports.usersControllers;
+  controllers = imports.controllers;
 
   console.log "server initialized"
 
@@ -18,9 +18,9 @@ module.exports = (options, imports, register) ->
   expr.use bodyParser.urlencoded extended: false
   expr.use bodyParser.json()
 
-  expr.get "/users", userControllers.get
-  expr.get "/users/:uid", userControllers.getSingle
-  expr.post "/users", userControllers.post
+  expr.get "/users", controllers.users.get
+  expr.get "/users/:uid", controllers.users.getSingle
+  expr.post "/users", controllers.users.post
 
   http.createServer(expr).listen expr.get('port'), () ->
     console.log "Express server listening on port #{expr.get('port')}"

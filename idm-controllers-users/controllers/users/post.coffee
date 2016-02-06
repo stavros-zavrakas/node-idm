@@ -1,4 +1,4 @@
-exports.post = 
+module.exports = 
   (usersModel) ->
     return (req, res) ->
       console.log "post /users controller"

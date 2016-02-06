@@ -1,4 +1,4 @@
-exports.get = 
+module.exports = 
   (usersModel) ->
     return (req, res) ->
       console.log "get /users controller"
