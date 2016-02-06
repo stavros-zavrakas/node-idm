@@ -1,20 +1,21 @@
 init = (mongoose) ->
-  name: "clients"
+  name: "tokens"
   schema:
-    clientName:
+    accessToken:
       type: String
       required: true
-    clientId: 
+    refreshToken:
       type: String
       required: true
-    clientSecret: 
+    uid:
       type: String
       required: true
-    uid: 
-      type: mongoose.Schema.ObjectId
+    cid:
+      type: String
       required: true
-    permissions: 
-      type: Array,
+    expires_in:
+      type: String
+      required: true
     isDeleted: 
       type: Boolean
       default: false

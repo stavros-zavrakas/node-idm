@@ -6,13 +6,14 @@ module.exports = (options, imports, register) ->
 
   mongoose = imports.mongoose;
 
-  modelsSchemas = models.init mongoose
+  modelsData = models.init mongoose
 
-  usersModel = generator.createModel mongoose, "users", modelsSchemas.users
-
-  clientsModel = generator.createModel mongoose, "clients", modelsSchemas.clients
+  usersModel = generator.createModel mongoose, modelsData.users.name, modelsData.users.schema
+  clientsModel = generator.createModel mongoose, modelsData.clients.name, modelsData.clients.schema
+  tokensModel = generator.createModel mongoose, modelsData.tokens.name, modelsData.tokens.schema
 
   register null,
     models:
       users: usersModel
       clients: clientsModel
+      tokensModel: tokensModel
