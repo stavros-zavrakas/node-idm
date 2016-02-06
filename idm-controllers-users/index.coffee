@@ -6,11 +6,13 @@ module.exports = (options, imports, register) ->
   console.log "users controllers initialized"
 
   usersModel = imports.usersModel
-  getUsersController = get.get usersModel
-  getSingleUsersController = getSingle.getSingle usersModel
-  postUsersController = post.post usersModel
+
+  get = get.get usersModel
+  getSingle = getSingle.getSingle usersModel
+  post = post.post usersModel
 
   register null,
-    getUsersController: getUsersController
-    getSingleUsersController: getSingleUsersController
-    postUsersController: postUsersController
+    usersControllers:
+      get: get
+      getSingle: getSingle
+      post: post
