@@ -1,11 +1,11 @@
 {
-  "name": "IdmNodeUsersRoutes",
+  "name": "IdmNodeModels",
   "main": "index.js",
   "version": "0.0.1",
   "private": true,
   "dependencies": {},
   "plugin": {
-    "consumes": ["models"],
-    "provides": ["usersControllers"]
+    "consumes": ["mongoose"],
+    "provides": ["models"]
   }
 }

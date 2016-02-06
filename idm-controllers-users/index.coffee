@@ -5,7 +5,7 @@ post = require "./controllers/post"
 module.exports = (options, imports, register) ->
   console.log "users controllers initialized"
 
-  usersModel = imports.usersModel
+  usersModel = imports.models.users
 
   get = get.get usersModel
   getSingle = getSingle.getSingle usersModel

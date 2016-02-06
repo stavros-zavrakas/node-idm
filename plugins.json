@@ -7,5 +7,7 @@
   "port": 27017,
   "databaseName": "node-idm"
 }, {
+  "packagePath": "./idm-models"
+}, {
   "packagePath": "./idm-controllers-users"
 }]

@@ -2,9 +2,6 @@ assert = require "assert"
 
 mongoose = require "mongoose"
 
-clients = require "./models/clients"
-users = require "./models/users"
-
 module.exports = (options, imports, register) ->
   assert options.host, "Option 'host' is required"
   assert options.databaseName, "Option 'databaseName' is required"
@@ -20,8 +17,6 @@ module.exports = (options, imports, register) ->
     console.log "Successfully connected to MongoDB"
 
     register null,
-      mongoose: mongoose,
-      clientsModel: clients.model
-      usersModel: users.model
+      mongoose: mongoose
 
   mongoose.connect "mongodb://#{options.host}/#{options.databaseName}"
