@@ -4,6 +4,8 @@ BasicStrategy = require('passport-http').BasicStrategy;
 
 module.exports = (options, imports, register) ->
 
+  console.log "idm-node: passport initialisation"
+
   passport.serializeUser (user, done) ->
     done null, user
 
