@@ -6,6 +6,8 @@ module.exports = (options, imports, register) ->
 
   mongoose = imports.mongoose;
 
+  console.log "idm-node: models initialisation"
+
   modelsData = models.init mongoose
 
   usersModel = generator.createModel mongoose, modelsData.users.name, modelsData.users.schema

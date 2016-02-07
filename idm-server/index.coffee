@@ -4,27 +4,33 @@ express = require 'express'
 http = require 'http'
 bodyParser = require 'body-parser'
 
+passport = require 'passport'
+
 module.exports = (options, imports, register) ->
   assert options.port, "Option 'port' is required"
 
   controllers = imports.controllers;
 
-  console.log "server initialized"
+  console.log "idm-node: server initialisation"
 
-  expr = express();
+  app = express();
 
-  expr.set "port", options.port
+  app.set "port", options.port
 
-  expr.use bodyParser.urlencoded extended: false
-  expr.use bodyParser.json()
+  app.use bodyParser.urlencoded extended: true
+  app.use bodyParser.json()
 
-  expr.get "/users", controllers.users.get
-  expr.get "/users/:uid", controllers.users.getSingle
-  expr.post "/users", controllers.users.post
+  app.get "/users", controllers.users.get
+  app.get "/users/:uid", controllers.users.getSingle
+  app.post "/users", controllers.users.post
 
-  http.createServer(expr).listen expr.get('port'), () ->
-    console.log "Express server listening on port #{expr.get('port')}"
+  app.post "/login",
+    passport.authenticate "basic", session: false
+    controllers.login.basicAuth
+
+  http.createServer(app).listen app.get('port'), () ->
+    console.log "idm-node: express server listening on port #{app.get('port')}"
 
   register null,
-    express: expr
+    express: app
 

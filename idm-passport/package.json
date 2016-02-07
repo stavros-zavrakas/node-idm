@@ -1,11 +1,11 @@
 {
-  "name": "IdmNodeUsersRoutes",
+  "name": "IdmNodePassport",
   "main": "index.js",
   "version": "0.0.1",
   "private": true,
   "dependencies": {},
   "plugin": {
-    "consumes": ["models", "passport"],
-    "provides": ["controllers"]
+    "consumes": [],
+    "provides": ["passport"]
   }
 }
