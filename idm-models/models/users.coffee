@@ -1,3 +1,5 @@
+bcrypt = require "bcrypt-nodejs"
+
 init = (mongoose) ->
   name: "users"
   schema:
@@ -52,6 +54,12 @@ init = (mongoose) ->
     updated:
       type: Date
       default: Date.now
+  methods:
+      verifyPassword: (password, callback) ->
+        bcrypt.compare password, @password, (err, isMatch) ->
+          if err
+            return callback err
+          callback null, isMatch
 
 module.exports =
   init: init

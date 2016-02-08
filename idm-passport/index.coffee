@@ -6,6 +6,9 @@ module.exports = (options, imports, register) ->
 
   console.log "idm-node: passport initialisation"
 
+  models = imports.models
+  User = models.users
+
   passport.serializeUser (user, done) ->
     done null, user
 
@@ -14,17 +17,19 @@ module.exports = (options, imports, register) ->
 
   passport.use new BasicStrategy (
     (username, password, done) ->
-      console.log "hereee"
-      return done(null, 'success');
-      # User.findOne username: userid, (err, user) ->
-      #   if err 
-      #     return done err
-      #   else if not user
-      #     return done null, false
-      #   else if not user.verifyPassword password
-      #     return done null, false
+      User.findOne email: username, (err, user) ->
+        if err 
+          return done err
+        else if not user
+          return done null, false
 
-      #   return done(null, user);
+        user.verifyPassword password, (err, isMatch) ->
+          if err
+            return done err
+          else if not isMatch
+            return done null, false
+
+          return done null, user
   )
 
   register null,
