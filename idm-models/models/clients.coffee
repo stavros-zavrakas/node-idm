@@ -1,18 +1,19 @@
 init = (mongoose) ->
   name: "clients"
   schema:
-    clientName:
+    name:
       type: String
       required: true
-    clientId: 
+    id: 
       type: String
       required: true
-    clientSecret: 
+    secret: 
       type: String
       required: true
     uid: 
       type: mongoose.Schema.ObjectId
       required: true
+    ### 
     permissions: 
       type: Array,
     isDeleted: 
@@ -24,6 +25,7 @@ init = (mongoose) ->
     updated:
       type: Date
       default: Date.now
+    ### 
 
 module.exports =
   init: init
