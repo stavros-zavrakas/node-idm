@@ -54,6 +54,24 @@ init = (mongoose) ->
     updated:
       type: Date
       default: Date.now
+  preHookMethods:
+      generateSalt: (callback) ->
+        user = this;
+
+        if not @isModified 'password'
+          return callback()
+
+        bcrypt.genSalt 5, (err, salt) =>
+          if err
+            return callback err
+
+          bcrypt.hash @password, salt, null, (err, hash) =>
+            if err 
+              return callback err
+            
+            @password = hash
+            
+            return callback()
   methods:
       verifyPassword: (password, callback) ->
         bcrypt.compare password, @password, (err, isMatch) ->

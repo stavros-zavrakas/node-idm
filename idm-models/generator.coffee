@@ -1,12 +1,16 @@
-createModel = (mongoose, modelName, schemaObject, methods) ->
+createModel = (mongoose, model) ->
 
-  schema = new mongoose.Schema schemaObject
+  schema = new mongoose.Schema model.schema
 
-  if methods
-    for methodName, methodFunction of methods
+  if model.preHookMethods
+    for preMethodName, preMethodFunction of model.preHookMethods
+      schema.pre 'save', preMethodFunction
+
+  if model.methods
+    for methodName, methodFunction of model.methods
       schema.methods[methodName] = methodFunction
 
-  mongooseSchema = mongoose.model modelName, schema
+  mongooseSchema = mongoose.model model.name, schema
 
   return mongooseSchema
 

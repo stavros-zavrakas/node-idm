@@ -4,12 +4,11 @@ express = require 'express'
 http = require 'http'
 bodyParser = require 'body-parser'
 
-passport = require 'passport'
-
 module.exports = (options, imports, register) ->
   assert options.port, "Option 'port' is required"
 
-  controllers = imports.controllers;
+  controllers = imports.controllers
+  basicAuth = imports.basicAuth
 
   console.log "idm-node: server initialisation"
 
@@ -25,7 +24,7 @@ module.exports = (options, imports, register) ->
   app.post "/users", controllers.users.post
 
   app.post "/login",
-    passport.authenticate "basic", session: false
+    basicAuth.isAuthenticated
     controllers.login.basicAuth
 
   http.createServer(app).listen app.get('port'), () ->

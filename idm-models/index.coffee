@@ -10,9 +10,9 @@ module.exports = (options, imports, register) ->
 
   modelsData = models.init mongoose
 
-  usersModel = generator.createModel mongoose, modelsData.users.name, modelsData.users.schema, modelsData.users.methods
-  clientsModel = generator.createModel mongoose, modelsData.clients.name, modelsData.clients.schema
-  tokensModel = generator.createModel mongoose, modelsData.tokens.name, modelsData.tokens.schema
+  usersModel = generator.createModel mongoose, modelsData.users
+  clientsModel = generator.createModel mongoose, modelsData.clients
+  tokensModel = generator.createModel mongoose, modelsData.tokens
 
   register null,
     models:
