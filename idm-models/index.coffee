@@ -13,9 +13,11 @@ module.exports = (options, imports, register) ->
   usersModel = generator.createModel mongoose, modelsData.users
   clientsModel = generator.createModel mongoose, modelsData.clients
   tokensModel = generator.createModel mongoose, modelsData.tokens
+  codesModel = generator.createModel mongoose, modelsData.codes
 
   register null,
     models:
       users: usersModel
       clients: clientsModel
       tokensModel: tokensModel
+      codesModel: codesModel

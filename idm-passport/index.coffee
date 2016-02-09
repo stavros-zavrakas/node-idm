@@ -1,6 +1,7 @@
 passport = require 'passport'
 
-BasicStrategy = require('passport-http').BasicStrategy;
+BasicStrategy = require('passport-http').BasicStrategy
+BearerStrategy = require('passport-http-bearer').Strategy
 
 module.exports = (options, imports, register) ->
 
@@ -10,6 +11,7 @@ module.exports = (options, imports, register) ->
 
   Users = models.users
   Clients = models.clients
+  Tokens = models.tokens
 
   passport.serializeUser (user, done) ->
     done null, user
@@ -46,9 +48,28 @@ module.exports = (options, imports, register) ->
         return callback null, client
   )
 
+  passport.use new BearerStrategy(
+    (accessToken, callback) ->
+      Tokens.findOne value: accessToken, (err, token) ->
+        if err
+          return callback err
+        else if not token
+          return callback null, false
+
+        Users.findOne _id: token.userId, (err, user) ->
+          if err
+            return callback err
+          else if not user
+            return callback null, false
+
+          return callback null, user, scope: '*'
+  )
+
   register null,
     passport: passport
     basicAuth:
       isAuthenticated: passport.authenticate 'basic', session: false
     clientBasic:
       isAuthenticated: passport.authenticate 'client-basic', session: false
+    bearerAuth:
+      isAuthenticated: passport.authenticate 'bearer', session: false

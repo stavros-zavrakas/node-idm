@@ -1,22 +1,21 @@
 init = (mongoose) ->
-  name: "tokens"
+  name: "codes"
   schema:
-    accessToken:
+    value: 
       type: String
       required: true
-    refreshToken:
+    redirectUri: 
       type: String
       required: true
-    uid:
+    uid: 
       type: mongoose.Schema.ObjectId
       required: true
-    clientId:
+    clientId: 
       type: String
       required: true
-    ###
-    expires_in:
-      type: String
-      required: true
+    ### 
+    permissions: 
+      type: Array,
     isDeleted: 
       type: Boolean
       default: false
@@ -26,7 +25,7 @@ init = (mongoose) ->
     updated:
       type: Date
       default: Date.now
-    ###
+    ### 
 
 module.exports =
   init: init
