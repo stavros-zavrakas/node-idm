@@ -1,11 +1,11 @@
 {
-  "name": "IdmNodePassport",
+  "name": "IdmNodeOauth2",
   "main": "index.js",
   "version": "0.0.1",
   "private": true,
   "dependencies": {},
   "plugin": {
     "consumes": ["models"],
-    "provides": ["passport", "basicAuth", "clientBasicAuth"]
+    "provides": ["oauth"]
   }
 }

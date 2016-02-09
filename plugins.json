@@ -12,4 +12,6 @@
   "packagePath": "./idm-models"
 }, {
   "packagePath": "./idm-controllers-users"
+}, {
+  "packagePath": "./idm-oauth2"
 }]

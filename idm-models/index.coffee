@@ -19,5 +19,5 @@ module.exports = (options, imports, register) ->
     models:
       users: usersModel
       clients: clientsModel
-      tokensModel: tokensModel
-      codesModel: codesModel
+      tokens: tokensModel
+      codes: codesModel

@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {},
   "plugin": {
-    "consumes": ["models", "passport"],
+    "consumes": ["models", "passport", "oauth"],
     "provides": ["controllers"]
   }
 }

@@ -21,6 +21,8 @@ module.exports = (options, imports, register) ->
 
   passport.use new BasicStrategy (
     (username, password, done) ->
+      console.log "just BasicStrategy"
+      console.log "#{username} : #{password}"
       Users.findOne email: username, (err, user) ->
         if err 
           return done err
@@ -38,11 +40,12 @@ module.exports = (options, imports, register) ->
 
   passport.use 'client-basic', new BasicStrategy(
     (username, password, callback) ->
+      console.log "client-basic BasicStrategy"
       Clients.findOne id: username, (err, client) ->
         if err 
           return callback err
 
-        if  not client or client.secret isnt password
+        if not client or client.secret isnt password
           return callback null, false
 
         return callback null, client
@@ -50,13 +53,14 @@ module.exports = (options, imports, register) ->
 
   passport.use new BearerStrategy(
     (accessToken, callback) ->
-      Tokens.findOne value: accessToken, (err, token) ->
+      console.log "BearerStrategy"
+      Tokens.findOne accessToken: accessToken, (err, token) ->
         if err
           return callback err
         else if not token
           return callback null, false
 
-        Users.findOne _id: token.userId, (err, user) ->
+        Users.findOne _id: token.uid, (err, user) ->
           if err
             return callback err
           else if not user
@@ -68,8 +72,8 @@ module.exports = (options, imports, register) ->
   register null,
     passport: passport
     basicAuth:
-      isAuthenticated: passport.authenticate 'basic', session: false
-    clientBasic:
+      isAuthenticated: passport.authenticate ['basic', 'bearer'], session: false
+    clientBasicAuth:
       isAuthenticated: passport.authenticate 'client-basic', session: false
     bearerAuth:
       isAuthenticated: passport.authenticate 'bearer', session: false
