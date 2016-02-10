@@ -1,10 +1,11 @@
 # @see: http://security.stackexchange.com/questions/38802/how-is-saml-solving-the-cross-domain-single-sign-on-problem
 # @see: https://rwlive.wordpress.com/
+# @see: http://dejanglozic.com/2014/10/07/sharing-micro-service-authentication-using-nginx-passport-and-redis/
 
 assert = require "assert"
 
 express = require "express"
-ejs = require "ejs"
+exphbs = require "express-handlebars"
 http = require "http"
 session = require "express-session"
 bodyParser = require "body-parser"
@@ -23,7 +24,9 @@ module.exports = (options, imports, register) ->
   app = express();
 
   app.set "port", options.port
-  app.set "view engine", "ejs"
+
+  app.engine "handlebars", exphbs {defaultLayout: 'main'};
+  app.set "view engine", "handlebars"
 
   app.use bodyParser.urlencoded extended: true
   app.use bodyParser.json()
@@ -35,12 +38,17 @@ module.exports = (options, imports, register) ->
   app.use passport.initialize()
   app.use passport.session()
 
+  app.get "/",
+    (req, res) ->
+      res.render "layouts"
+
   app.get "/users", controllers.users.get
   app.get "/users/:uid", controllers.users.getSingle
 
   app.get "/login",
     (req, res) ->
-      res.render "login"
+      console.log "hereeee"
+      res.render "layouts/login"
 
   app.post "/login",
     localAuth.isAuthenticated
