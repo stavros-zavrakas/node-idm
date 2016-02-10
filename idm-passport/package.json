@@ -6,6 +6,6 @@
   "dependencies": {},
   "plugin": {
     "consumes": ["models"],
-    "provides": ["basicAuth", "clientBasicAuth"]
+    "provides": ["passport", "localAuth", "basicAuth", "clientBasicAuth"]
   }
 }

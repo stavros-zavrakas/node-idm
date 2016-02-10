@@ -1,4 +1,7 @@
+login = require "connect-ensure-login"
+
 module.exports = (oauthServer, clientsModel) -> [
+  login.ensureLoggedIn()
   oauthServer.authorization (clientId, redirectUri, callback) ->
     clientsModel.findOne id: clientId, (err, client) ->
       if err

@@ -9,6 +9,9 @@ module.exports = (options, imports, register) ->
   passportLib = passport.init models.users, models.clients, models.tokens
 
   register null,
+    passport: passportLib
+    localAuth:
+      isAuthenticated: passportLib.authenticate "local", { successReturnToOrRedirect: "/", failureRedirect: "/login" }
     basicAuth:
       isAuthenticated: passportLib.authenticate ["basic", "bearer"], session: false
     clientBasicAuth:
