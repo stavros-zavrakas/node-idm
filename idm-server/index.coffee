@@ -3,6 +3,7 @@
 # @see: http://dejanglozic.com/2014/10/07/sharing-micro-service-authentication-using-nginx-passport-and-redis/
 
 assert = require "assert"
+path = require "path"
 
 express = require "express"
 exphbs = require "express-handlebars"
@@ -25,7 +26,8 @@ module.exports = (options, imports, register) ->
 
   app.set "port", options.port
 
-  app.engine "handlebars", exphbs {defaultLayout: 'main'};
+  app.engine "handlebars", exphbs {layout:false}
+  app.set "views", path.join(__dirname, '../client/views')
   app.set "view engine", "handlebars"
 
   app.use bodyParser.urlencoded extended: true
@@ -47,7 +49,6 @@ module.exports = (options, imports, register) ->
 
   app.get "/login",
     (req, res) ->
-      console.log "hereeee"
       res.render "layouts/login"
 
   app.post "/login",

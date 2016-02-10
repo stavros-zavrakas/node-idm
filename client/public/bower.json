@@ -1,0 +1,12 @@
+{
+  "name": "Node IDM Client",
+  "homepage": "https://github.com/stavros-zavrakas/node-idm",
+  "authors": [
+    "Stavros Zavrakas <st.zavrakas@gmail.com>"
+  ],
+  "description": "",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
