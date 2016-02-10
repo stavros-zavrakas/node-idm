@@ -1,3 +1,5 @@
+# @see: http://security.stackexchange.com/questions/38802/how-is-saml-solving-the-cross-domain-single-sign-on-problem
+
 assert = require "assert"
 
 express = require "express"
