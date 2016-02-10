@@ -13,25 +13,6 @@ module.exports = (options, imports, register) ->
   basicAuth = imports.basicAuth
   clientBasicAuth = imports.clientBasicAuth
 
-  # oauth testing start
-  oauth = imports.oauth
-
-  authorization = [
-    controllers.oauth.authorisation,
-    (req, res) ->
-      res.render 'dialog', transactionID: req.oauth2.transactionID, user: req.user, client: req.oauth2.client
-  ]
-
-  token = [
-    oauth.server.token(),
-    oauth.server.errorHandler()
-  ]
-
-  decision = [
-    oauth.server.decision()
-  ]
-  # oauth testing end
-
   console.log "idm-node: server initialisation"
 
   app = express();
@@ -49,7 +30,7 @@ module.exports = (options, imports, register) ->
 
   app.get "/users", controllers.users.get
   app.get "/users/:uid", controllers.users.getSingle
-  
+
   app.post "/users",
     basicAuth.isAuthenticated 
     controllers.users.post
@@ -60,15 +41,15 @@ module.exports = (options, imports, register) ->
 
   app.get "/oauth2/authorize",
     basicAuth.isAuthenticated
-    authorization
+    controllers.oauth.authorisation
   
   app.post "/oauth2/authorize",
     basicAuth.isAuthenticated
-    decision
+    controllers.oauth.decision
 
   app.post "/oauth2/token",
     clientBasicAuth.isAuthenticated
-    token
+    controllers.oauth.token
 
   http.createServer(app).listen app.get('port'), () ->
     console.log "idm-node: express server listening on port #{app.get('port')}"

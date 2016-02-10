@@ -15,6 +15,8 @@ module.exports = (options, imports, register) ->
   basicAuth = controllers.login.basicAuth passport
 
   oauthAuthorisation = controllers.oauth.authorization oauth.server, clientsModel
+  oauthToken = controllers.oauth.token oauth.server
+  oauthDecision = controllers.oauth.decision oauth.server
 
   register null,
     controllers:
@@ -26,3 +28,5 @@ module.exports = (options, imports, register) ->
         basicAuth: basicAuth
       oauth:
         authorisation: oauthAuthorisation
+        token: oauthToken
+        decision: oauthDecision

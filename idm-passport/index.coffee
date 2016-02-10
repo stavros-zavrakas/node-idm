@@ -20,9 +20,8 @@ module.exports = (options, imports, register) ->
     done null, obj
 
   passport.use new BasicStrategy (
+
     (username, password, done) ->
-      console.log "just BasicStrategy"
-      console.log "#{username} : #{password}"
       Users.findOne email: username, (err, user) ->
         if err 
           return done err
@@ -39,8 +38,8 @@ module.exports = (options, imports, register) ->
   )
 
   passport.use 'client-basic', new BasicStrategy(
+
     (username, password, callback) ->
-      console.log "client-basic BasicStrategy"
       Clients.findOne id: username, (err, client) ->
         if err 
           return callback err
@@ -52,8 +51,8 @@ module.exports = (options, imports, register) ->
   )
 
   passport.use new BearerStrategy(
+                                  
     (accessToken, callback) ->
-      console.log "BearerStrategy"
       Tokens.findOne accessToken: accessToken, (err, token) ->
         if err
           return callback err
