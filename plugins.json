@@ -11,7 +11,7 @@
 }, {
   "packagePath": "./idm-models"
 }, {
-  "packagePath": "./idm-controllers-users"
+  "packagePath": "./idm-controllers"
 }, {
   "packagePath": "./idm-oauth2"
 }]
