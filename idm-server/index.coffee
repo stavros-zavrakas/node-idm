@@ -1,4 +1,5 @@
 # @see: http://security.stackexchange.com/questions/38802/how-is-saml-solving-the-cross-domain-single-sign-on-problem
+# @see: https://rwlive.wordpress.com/
 
 assert = require "assert"
 

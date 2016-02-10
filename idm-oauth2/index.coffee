@@ -20,6 +20,7 @@ module.exports = (options, imports, register) ->
   
   console.log "idm-node: oauth2 initialisation"
 
+  Users = models.users
   Clients = models.clients
   Codes = models.codes
   Tokens = models.tokens
@@ -49,6 +50,8 @@ module.exports = (options, imports, register) ->
 
       return callback null, code.value
 
+  # @example: /oauth2/authorize?client_id=client_id&response_type=code&redirect_uri=http://localhost:3000
+  # /oauth2/token (grant_type: code)
   server.exchange oauth2orize.exchange.code (client, code, redirectUri, callback) ->
     Codes.findOne value: code, (err, authCode) ->
       if err
@@ -76,6 +79,41 @@ module.exports = (options, imports, register) ->
 
           callback null, token
 
+  # @example: /oauth2/token (grant_type: password)
+  server.exchange oauth2orize.exchange.password (client, username, password, scope, callback) ->
+    Users.findOne email: username, (err, user) ->
+      if err
+        return callback err
+      else if not user
+        return callback null, false
+
+      user.verifyPassword password, (err, isMatch) ->
+        if err
+          return callback err
+        else if not isMatch
+          callback null, false
+
+        ###
+        # @todo: should we treat the refresh tokens as different collection?
+        token = utils.uid(256)
+        refreshToken = utils.uid(256)
+        tokenHash = crypto.createHash('sha1').update(token).digest('hex')
+        refreshTokenHash = crypto.createHash('sha1').update(refreshToken).digest('hex')
+        expirationDate = new Date(new Date().getTime() + (3600 * 1000))
+        ###
+
+        token = new Tokens
+          accessToken: uid 256
+          refreshToken: uid 256
+          clientId: client.id
+          uid: user._id
+
+        token.save token, (err) ->
+          if err
+            return callback err
+
+          callback null, token
+          
   register null,
     oauth:
       server: server
