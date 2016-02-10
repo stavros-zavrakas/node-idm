@@ -2,7 +2,7 @@ login = require "./login"
 oauthCtrl = require "./oauth"
 users = require "./users"
 
-init = (models, passport, oauth) ->
+init = (models, oauth) ->
 
   # users
   getUsers = users.get models.users
@@ -10,7 +10,7 @@ init = (models, passport, oauth) ->
   postUsers = users.post models.users
 
   # passport
-  basicAuth = login.basicAuth passport
+  basicAuth = login.basicAuth()
 
   # oauth
   oauthAuthorisation = oauthCtrl.authorization oauth.server, models.clients
