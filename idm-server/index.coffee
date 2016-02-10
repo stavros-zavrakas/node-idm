@@ -27,7 +27,7 @@ module.exports = (options, imports, register) ->
   app.set "port", options.port
 
   app.engine "handlebars", exphbs {layout:false}
-  app.set "views", path.join(__dirname, '../client/views')
+  app.set "views", path.join(__dirname, "../client/views")
   app.set "view engine", "handlebars"
 
   app.use bodyParser.urlencoded extended: true
@@ -67,6 +67,8 @@ module.exports = (options, imports, register) ->
   app.post "/oauth2/token",
     clientBasicAuth.isAuthenticated
     controllers.oauth.token
+
+  app.use "/static", express.static(path.join(__dirname, "../client/public"))
 
   http.createServer(app).listen app.get("port"), () ->
     console.log "idm-node: express server listening on port #{app.get('port')}"
