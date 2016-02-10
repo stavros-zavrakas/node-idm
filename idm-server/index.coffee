@@ -1,10 +1,10 @@
-assert = require 'assert'
+assert = require "assert"
 
-express = require 'express'
-ejs = require 'ejs'
-http = require 'http'
-session = require 'express-session'
-bodyParser = require 'body-parser'
+express = require "express"
+ejs = require "ejs"
+http = require "http"
+session = require "express-session"
+bodyParser = require "body-parser"
 
 module.exports = (options, imports, register) ->
   assert options.port, "Option 'port' is required"
@@ -26,7 +26,6 @@ module.exports = (options, imports, register) ->
     secret: "Super Secret Session Key"
     saveUninitialized: true
     resave: true
-
 
   app.get "/users", controllers.users.get
   app.get "/users/:uid", controllers.users.getSingle
@@ -51,7 +50,7 @@ module.exports = (options, imports, register) ->
     clientBasicAuth.isAuthenticated
     controllers.oauth.token
 
-  http.createServer(app).listen app.get('port'), () ->
+  http.createServer(app).listen app.get("port"), () ->
     console.log "idm-node: express server listening on port #{app.get('port')}"
 
   register null,

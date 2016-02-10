@@ -1,7 +1,7 @@
-passport = require 'passport'
+passport = require "passport"
 
-BasicStrategy = require('passport-http').BasicStrategy
-BearerStrategy = require('passport-http-bearer').Strategy
+BasicStrategy = require("passport-http").BasicStrategy
+BearerStrategy = require("passport-http-bearer").Strategy
 
 module.exports = (options, imports, register) ->
 
@@ -37,7 +37,7 @@ module.exports = (options, imports, register) ->
           return done null, user
   )
 
-  passport.use 'client-basic', new BasicStrategy(
+  passport.use "client-basic", new BasicStrategy(
 
     (username, password, callback) ->
       Clients.findOne id: username, (err, client) ->
@@ -51,7 +51,7 @@ module.exports = (options, imports, register) ->
   )
 
   passport.use new BearerStrategy(
-                                  
+
     (accessToken, callback) ->
       Tokens.findOne accessToken: accessToken, (err, token) ->
         if err
@@ -65,14 +65,14 @@ module.exports = (options, imports, register) ->
           else if not user
             return callback null, false
 
-          return callback null, user, scope: '*'
+          return callback null, user, scope: "*"
   )
 
   register null,
     passport: passport
     basicAuth:
-      isAuthenticated: passport.authenticate ['basic', 'bearer'], session: false
+      isAuthenticated: passport.authenticate ["basic", "bearer"], session: false
     clientBasicAuth:
-      isAuthenticated: passport.authenticate 'client-basic', session: false
+      isAuthenticated: passport.authenticate "client-basic", session: false
     bearerAuth:
-      isAuthenticated: passport.authenticate 'bearer', session: false
+      isAuthenticated: passport.authenticate "bearer", session: false
