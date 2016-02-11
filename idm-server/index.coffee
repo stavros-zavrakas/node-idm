@@ -26,7 +26,15 @@ module.exports = (options, imports, register) ->
 
   app.set "port", options.port
 
-  app.engine "handlebars", exphbs {layout:false}
+  viewsPath = path.join __dirname, "..", "client/views"
+  layoutsDir = path.resolve path.join viewsPath, "layouts"
+  partialsDir = path.resolve path.join viewsPath, "partials"
+
+  app.engine "handlebars", exphbs 
+    layoutsDir: layoutsDir
+    partialsDir: partialsDir
+    defaultLayout: "main"
+
   app.set "views", path.join(__dirname, "../client/views")
   app.set "view engine", "handlebars"
 
