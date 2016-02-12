@@ -2,16 +2,16 @@
   "packagePath": "./idm-server",
   "port": 3000
 }, {
-  "packagePath": "./idm-database",
+  "packagePath": "./idm-api/idm-database",
   "host": "localhost",
   "port": 27017,
   "databaseName": "node-idm"
 }, {
-  "packagePath": "./idm-passport"
+  "packagePath": "./idm-api/idm-passport"
 }, {
-  "packagePath": "./idm-models"
+  "packagePath": "./idm-api/idm-models"
 }, {
-  "packagePath": "./idm-controllers"
+  "packagePath": "./idm-api/idm-controllers"
 }, {
-  "packagePath": "./idm-oauth2"
+  "packagePath": "./idm-api/idm-oauth2"
 }]
