@@ -14,8 +14,9 @@ bodyParser = require "body-parser"
 module.exports = (options, imports, register) ->
   assert options.port, "Option 'port' is required"
 
-  passport = imports.passport
   controllers = imports.controllers
+  clientControllers = imports.clientControllers
+  passport = imports.passport
   localAuth = imports.localAuth
   basicAuth = imports.basicAuth
   clientBasicAuth = imports.clientBasicAuth
@@ -48,23 +49,16 @@ module.exports = (options, imports, register) ->
   app.use passport.initialize()
   app.use passport.session()
 
-  app.get "/",
-    (req, res) ->
-      res.render "layouts"
+  app.use "/static", express.static(path.join(__dirname, "../idm-client/public"))
 
-  app.get "/users", controllers.users.get
-  app.get "/users/:uid", controllers.users.getSingle
+  app.get "/",
+    clientControllers.index
 
   app.get "/login",
-    (req, res) ->
-      res.render "layouts/login"
+    clientControllers.login
 
   app.post "/login",
     localAuth.isAuthenticated
-
-  app.post "/users",
-    basicAuth.isAuthenticated 
-    controllers.users.post
 
   app.get "/oauth2/authorize",
     controllers.oauth.authorisation
@@ -76,7 +70,12 @@ module.exports = (options, imports, register) ->
     clientBasicAuth.isAuthenticated
     controllers.oauth.token
 
-  app.use "/static", express.static(path.join(__dirname, "../idm-client/public"))
+  app.get "/users", controllers.users.get
+  app.get "/users/:uid", controllers.users.getSingle
+
+  app.post "/users",
+    basicAuth.isAuthenticated 
+    controllers.users.post
 
   http.createServer(app).listen app.get("port"), () ->
     console.log "idm-node: express server listening on port #{app.get('port')}"

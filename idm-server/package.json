@@ -8,7 +8,7 @@
     "ejs": "*"
   },
   "plugin": {
-    "consumes": ["controllers", "passport", "localAuth", "basicAuth", "clientBasicAuth"],
+    "consumes": ["controllers", "clientControllers", "passport", "localAuth", "basicAuth", "clientBasicAuth"],
     "provides": ["express"]
   }
 }

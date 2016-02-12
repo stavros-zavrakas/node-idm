@@ -1,11 +1,11 @@
 {
-  "name": "IdmNodeApiRoutes",
+  "name": "IdmNodeClientRoutes",
   "main": "index.js",
   "version": "0.0.1",
   "private": true,
   "dependencies": {},
   "plugin": {
-    "consumes": ["models", "oauth"],
-    "provides": ["controllers"]
+    "consumes": [],
+    "provides": ["clientControllers"]
   }
 }

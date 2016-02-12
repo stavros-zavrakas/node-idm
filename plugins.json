@@ -14,4 +14,6 @@
   "packagePath": "./idm-api/idm-controllers"
 }, {
   "packagePath": "./idm-api/idm-oauth2"
+}, {
+  "packagePath": "./idm-client/controllers"
 }]
