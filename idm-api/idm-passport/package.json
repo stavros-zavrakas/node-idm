@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {},
   "plugin": {
-    "consumes": ["models"],
-    "provides": ["passport", "localAuth", "basicAuth", "clientBasicAuth"]
+    "consumes": ["models", "config"],
+    "provides": ["passport", "localAuth", "basicAuth", "clientBasicAuth", "facebookAuth"]
   }
 }

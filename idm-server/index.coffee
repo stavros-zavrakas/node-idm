@@ -11,15 +11,19 @@ http = require "http"
 session = require "express-session"
 bodyParser = require "body-parser"
 
+passportTmp = require "passport"
+
 module.exports = (options, imports, register) ->
   assert options.port, "Option 'port' is required"
 
+  config = imports.config
   controllers = imports.controllers
   clientControllers = imports.clientControllers
   passport = imports.passport
   localAuth = imports.localAuth
   basicAuth = imports.basicAuth
   clientBasicAuth = imports.clientBasicAuth
+  facebookAuth = imports.facebookAuth
 
   console.log "idm-node: server initialisation"
 
@@ -51,6 +55,15 @@ module.exports = (options, imports, register) ->
 
   app.use "/static", express.static(path.join(__dirname, "../idm-client/public"))
 
+  app.use (req, res, next) ->
+    # @todo: get the clientId from the query params 
+    # find  the client by clientId and add it to the session
+    # If does not exist in the session or in the query param, return error.
+    if not req.session.clientId
+      req.session.clientId = "client_id"
+
+    return next()
+
   app.get "/",
     clientControllers.index
 
@@ -59,6 +72,17 @@ module.exports = (options, imports, register) ->
 
   app.post "/login",
     localAuth.isAuthenticated
+
+  app.get "/auth/facebook",
+    facebookAuth.authenticate
+
+  app.get "/auth/facebook/callback",
+    facebookAuth.authenticateCallback
+    (req, res) ->
+      if req.session.clientId
+        console.log req.session.clientId
+
+      res.redirect "/"
 
   app.get "/oauth2/authorize",
     controllers.oauth.authorisation

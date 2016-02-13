@@ -9,6 +9,8 @@
 }, {
   "packagePath": "./idm-api/idm-passport"
 }, {
+  "packagePath": "./idm-api/config"
+}, {
   "packagePath": "./idm-api/idm-models"
 }, {
   "packagePath": "./idm-api/idm-controllers"

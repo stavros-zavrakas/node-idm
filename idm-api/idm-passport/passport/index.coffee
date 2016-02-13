@@ -4,8 +4,9 @@ localStrategy = require "./localStrategy"
 basicStrategy = require "./basicStrategy"
 clientBasicStrategy = require "./clientBasicStrategy"
 bearerStrategy = require "./bearerStrategy"
+facebookStrategy = require "./facebookStrategy"
 
-init = (Users, Clients, Tokens) ->
+init = (config, Users, Clients, Tokens) ->
 
   passport.serializeUser (user, done) ->
     done null, user
@@ -17,6 +18,7 @@ init = (Users, Clients, Tokens) ->
   basicStrategy passport, Users
   clientBasicStrategy passport, Clients
   bearerStrategy passport, Users, Tokens
+  facebookStrategy passport, config, Users
 
   return passport
 
